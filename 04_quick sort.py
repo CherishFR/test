@@ -10,7 +10,7 @@ def quick_sort(li,first,last):
             high -= 1
         li[low]=li[high]
         while low < high and key > li[low]:
-            low  += 1
+            low += 1
         li[high] = li[low]
     li[low] = key
     quick_sort(li, first, low-1)
