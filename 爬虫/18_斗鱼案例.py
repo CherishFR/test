@@ -33,8 +33,8 @@ class douyu(unittest.TestCase):
     # 测试结束执行的方法
     def tearDown(self):
         # 退出PhantomJS()浏览器
-        print "当前网站直播人数" + str(self.num)
-        print "当前网站观众人数" + str(self.count)
+        print("当前网站直播人数" + str(self.num))
+        print("当前网站观众人数" + str(self.count))
         self.driver.quit()
 
 if __name__ == '__main__':
