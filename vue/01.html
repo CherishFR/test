@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span v-bind:title="msg">{{ a }}</span>
+        <div v-html="a" ></div>
+        haha
+    </div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            // template:"<p>nihao{{ msg }}</p>",
+            data:{
+                msg:"fengrui",
+                a:"<span style='color:red' >这是红色</span>"
+            }
+        })
+    </script>
+</body>
+</html>

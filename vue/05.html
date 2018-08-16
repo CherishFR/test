@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{ msg }}</p>
+        <input v-model="msg" >
+        <todo></todo>
+    </div>
+    <script>
+        Vue.component('todo',{
+            props:'123331',
+            template:'<p>lilili</p>'
+        }
+        );
+        var app = new Vue({
+            el:'#app',
+            data:{
+                msg:"fengrui"
+            }
+        })
+
+    </script>
+</body>
+</html>
