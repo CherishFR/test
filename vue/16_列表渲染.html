@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 循环列表 -->
+        <!-- 在实际的开发环境，key值可以是后台返回的一个数据的唯一标识，例如数据库的ID字段 -->
+        <div v-for="(item,index) in list" :key="index">
+            {{item}}--{{index}}
+        </div>
+
+        <!-- 循环对象 -->
+        <div v-for="(item,key,index) in userInfo" :key="index">
+                {{item}}--{{key}}--{{index}}
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                list:[
+                    "嗨",
+                    "冯芮",
+                    "好",
+                    "久",
+                    "不",
+                    "见",
+                    "你",
+                    "还",
+                    "好",
+                    "吗"
+                ],
+                userInfo:{
+                    name:"root",
+                    passwd:"123456",
+                    age:"23",
+                    gender:"male",
+                }
+            }
+        })
+    </script>
+</body>
+</html>

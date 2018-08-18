@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="static/vue-2.4.0.js"></script>
+    <title>模板语法</title>
+</head>
+<body>
+    <div id="app">
+        {{name}}
+        <!-- 将<div>中innerText的内容与data.name的内容绑定 -->
+        <div v-text="name+'world'"></div>
+        <!-- 将<div>中innerHTML的内容与data.name的内容绑定 -->
+        <div v-html="name+'world'"></div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                name:"<h1>hello</h1>"
+            }
+        })
+    </script>
+</body>
+</html>

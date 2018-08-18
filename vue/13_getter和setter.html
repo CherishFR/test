@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="static/vue-2.4.0.js"></script>
+    <title>getter和setter</title>
+</head>
+<body>
+    <div id="app">
+        {{fullName}}
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                firstName:"jintao",
+                lastName:"liu",
+            },
+            computed:{
+                fullName: {
+                    // 当取fullName的值时，会去执行get
+                    get:function() {
+                        return this.lastName + " " + this.firstName
+                    },
+                    // 当设置fullName的值时，会去执行set
+                    set:function(value) {
+                        var arr = value.split(" ") // 将字符串以空格为准分割为元组
+                        this.firstName = arr[1]
+                        this.lastName = arr[0]
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

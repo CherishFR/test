@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="static/vue-2.4.0.js"></script>
+    <title>计算属性，方法，侦听器</title>
+</head>
+<body>
+    <div id="app">
+        {{fullName}}
+        <!-- 计算属性直接通过属性名字就能用 -->
+        <!-- {{fullName}} -->
+
+        <!-- 方法调用 -->
+        <!-- {{fullName()}} -->
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                firstName:"jintao",
+                lastName:"liu",
+                // 使用监听器的方法需要创建变量fullName
+                fullName:"liu jintao"
+            },
+            watch:{
+                // 监听firstName，当其改变的时候执行函数
+                firstName:function() {
+                    this.fullName = this.lastName + " " + this.firstName
+                },
+                // 监听lastName，当其改变的时候执行函数
+                lastName:function() {
+                    this.fullName = this.lastName + " " + this.firstName
+                }
+            }
+            // 方法，内部没有缓存，性能较差
+            // methods:{
+            //     fullName: function() {
+            //         return this.lastName + " " + this.firstName
+            //     }
+            // }
+
+            // 计算属性，内置缓存
+            // computed:{
+            //     fullName: function() {
+            //         return this.lastName + " " + this.firstName
+            //     }
+            // }
+        })
+    </script>
+</body>
+</html>

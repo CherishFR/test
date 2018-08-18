@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="static/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- v-model将input输入框中的值与app.inputvalue的值双向绑定 -->
+        <input type="text" v-model="inputvalue">
+        <button @click="handleBtnClick">提交</button>
+        <ul>
+            <!-- 模板的首字母大写，但是调用可以小写，用“-”隔开单词，v-bind将content,index的值传给props -->
+            <todo-item v-bind:content="item"
+                       v-bind:index="index"
+                       v-for="(item,index) in list"
+                       @delete="handleItemClick"> <!-- 当"delete"事件触发时，会调用父组件的handleItemClick函数 -->
+            </todo-item>
+        </ul>
+    </div>
+    <script>
+        // 全局组件
+        // Vue.component("TodoItem",{
+        //     props:["content"],
+        //     template:"<li>{{ content }}</li>" //模板里要用插值表达式
+        // });
+
+        // 子组件
+        var TodoItem = {
+            props:["content","index"],
+            template:"<li @click='handleItemClick'>{{ content }}</li>", //模板里要用插值表达式
+            method:{
+                // 该函数用于删除功能，由于content数据来自父组件的list列表，所以需要调用父组件的methods去删除数据
+                handleItemClick:function () {
+                    // 表示会触发"delete"事件,并且第二项可以填需要传递给父组件的参数
+                    this.$emit("delete",this.index)
+                }
+            }
+        };
+        // 父组件
+        var app = new Vue({
+            el:'#app',
+            // 注册局部组件
+            components:{
+                TodoItem:TodoItem
+            },
+            data:{
+                list:["第一课的内容","第一课的内容"],
+                inputvalue:""
+            },
+            methods:{
+                // 添加功能
+                handleBtnClick: function () {
+                    this.list.push(this.inputvalue);
+                    this.inputvalue=""
+                },
+                // 当监测到"delete"事件触发时执行，通过index接收子组件传递过来的参数
+                handleItemClick: function (index) {
+                    // 从index位置开始，向后删除1项
+                    this.list.splice(index,1)
+                }
+            }
+        });
+    </script>
+</body>
+</html>

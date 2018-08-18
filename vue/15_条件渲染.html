@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 如果是"v-if"是false，则会在直接删除该标签 -->
+        <div v-if="show">{{msg}}</div>
+        <div v-else>liujintao</div>
+
+        <!-- 
+            和"v-if"一样"v-show"也可以设置是否显示模板标签，
+            但是如果为false，"v-show"依然可以在浏览器中查看到该标签
+            只不过增加了一个"style=display:none"
+         -->
+        <div v-show="show">{{msg}}</div>
+
+        <div v-if="ai==='a'">zhaoxi</div>
+        <div v-else-if="ai==='b'">fengrui</div>
+        <div v-else>yuanjingwen</div>
+    </div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                show: false,
+                msg:"fengrui",
+                ai:"b"
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .activated {
+            color: red
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- class与对象相绑定：isActivated用来控制css是否生效 -->
+        <div @click="handleDivClick1"
+              :class="{activated: isActivated}"> 
+            hello
+        </div>
+
+        <!-- class与数组相绑定 -->
+        <div @click="handleDivClick2"
+             :class="[activated,activatedOne]">
+            world
+        </div>
+
+        <!-- style与对象相绑定 -->
+        <div :style="styleObj"
+             @click="handleDivClick3">
+            hi
+        </div>
+
+        <!-- style与数组相绑定，vue相关设置与上面相同 -->
+        <div :style="[styleObj,{fontSize:'20px'}]"
+             @click="handleDivClick3">
+            fengrui
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                isActivated: false,
+                
+                activated: "",
+                activatedOne: "activated-one",
+
+                styleObj:{
+                    color : "black"
+                }
+            },
+            methods:{
+                handleDivClick1:function() {
+                    this.isActivated = !this.isActivated
+                },
+
+                handleDivClick2:function() {
+                    this.activated = this.activated === "activated" ? "" : "activated" 
+                    //如果 this.activated === "activated" 为true，则 this.activated = ""
+                    //否则 this.activated = "activated"。
+                },
+
+                handleDivClick3:function(){
+                    this.styleObj.color = this.styleObj.color === "red" ? "black" : "red"
+                }
+            }
+        })
+    </script>
+</body>
+</html>
